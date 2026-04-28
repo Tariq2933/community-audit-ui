@@ -95,7 +95,6 @@ payload = {
 }
 
     st.info("Sending request to backend…")
-
     try:
         response = requests.post(
             f"{BACKEND_URL}/run",
