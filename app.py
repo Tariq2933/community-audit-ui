@@ -85,17 +85,15 @@ with date_col2:
 # ======================
 if st.button("Run Audit"):
     board_url = PRODUCTS[product][section]
-
 payload = {
     "board": board_url,
     "start_date": str(start_date),
     "end_date": str(end_date),
     "filter": filter_type,
     "extra_criteria": extra_criteria
-}
-
+        }
     st.info("Sending request to backend…")
-    try
+    try:
         response = requests.post(
             f"{BACKEND_URL}/run",
             json=payload,
