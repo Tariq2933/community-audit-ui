@@ -16,7 +16,7 @@ st.caption("No login • Works on Mac & Windows")
 # BACKEND URL
 # ======================
 # 👉 REPLACE this with your actual Render backend URL
-BACKEND_URL = "https://YOUR-BACKEND-URL.onrender.com"
+BACKEND_URL = "https://community-audit-backend.onrender.com"
 
 # ======================
 # PRODUCT → SECTION → URL MAPPING
