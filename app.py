@@ -55,8 +55,7 @@ with col2:
     )
 
 with col3:
-
-st.markdown("### Thread Criteria")
+    st.markdown("### Thread Criteria")
 
 filter_type = st.selectbox(
     "Primary Filter",
@@ -72,7 +71,6 @@ extra_criteria = st.multiselect(
         "Older than 14 days"
     ]
 )
-
 
 date_col1, date_col2 = st.columns(2)
 with date_col1:
