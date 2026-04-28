@@ -55,10 +55,24 @@ with col2:
     )
 
 with col3:
-    filter_type = st.selectbox(
-        "Thread Filter",
-        ["all", "answered", "unanswered"]
-    )
+
+st.markdown("### Thread Criteria")
+
+filter_type = st.selectbox(
+    "Primary Filter",
+    ["all", "answered", "unanswered"]
+)
+
+extra_criteria = st.multiselect(
+    "Additional criteria (optional)",
+    [
+        "No replies",
+        "No accepted answer",
+        "Older than 7 days",
+        "Older than 14 days"
+    ]
+)
+
 
 date_col1, date_col2 = st.columns(2)
 with date_col1:
