@@ -111,14 +111,25 @@ if st.button("🚀 Run Audit", use_container_width=True):
         )
         st.success("Response received ✅")
 
+
+st.info("Sending request to backend...")
+
+response = requests.post(
+    f"{BACKEND_URL}/run",
+    json=payload,
+    timeout=60
+)
+
 st.subheader("Raw backend response")
+
 st.text(f"Status code: {response.status_code}")
 st.text("Headers:")
 st.text(dict(response.headers))
+
 st.text("Body:")
 st.text(response.text)
 
-# Try JSON only if possible
+# ✅ Parse JSON only if possible
 try:
     st.subheader("Parsed JSON")
     st.json(response.json())
