@@ -110,7 +110,10 @@ if st.button("🚀 Run Audit", use_container_width=True):
             timeout=60
         )
         st.success("Response received ✅")
-        st.json(response.json())
+try:
+    st.json(response.json())
+except Exception:
+    st.text(response.text)
 
     except Exception as e:
         st.error(f"Could not reach backend: {e}")
