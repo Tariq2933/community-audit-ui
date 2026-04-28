@@ -83,14 +83,12 @@ with date_col2:
 # ======================
 # RUN BUTTON
 # ======================
-# ======================
-# RUN BUTTON
-# ======================
 
 st.divider()
 st.subheader("Run")
 
 if st.button("🚀 Run Audit", use_container_width=True):
+
     board_url = PRODUCTS[product][section]
 
     payload = {
@@ -103,40 +101,24 @@ if st.button("🚀 Run Audit", use_container_width=True):
 
     st.info("Sending request to backend...")
 
+    response = requests.post(
+        f"{BACKEND_URL}/run",
+        json=payload,
+        timeout=60
+    )
+
+    st.subheader("Raw backend response")
+
+    st.text(f"Status code: {response.status_code}")
+    st.text("Headers:")
+    st.text(dict(response.headers))
+
+    st.text("Body:")
+    st.text(response.text)
+
+    # ✅ Parse JSON only if possible
     try:
-        response = requests.post(
-            f"{BACKEND_URL}/run",
-            json=payload,
-            timeout=60
-        )
-        st.success("Response received ✅")
-
-
-st.info("Sending request to backend...")
-
-response = requests.post(
-    f"{BACKEND_URL}/run",
-    json=payload,
-    timeout=60
-)
-
-st.subheader("Raw backend response")
-
-st.text(f"Status code: {response.status_code}")
-st.text("Headers:")
-st.text(dict(response.headers))
-
-st.text("Body:")
-st.text(response.text)
-
-# ✅ Parse JSON only if possible
-try:
-    st.subheader("Parsed JSON")
-    st.json(response.json())
-except Exception as e:
-    st.warning(f"JSON parse failed: {e}")
-
+        st.subheader("Parsed JSON")
+        st.json(response.json())
     except Exception as e:
-        st.error(f"Could not reach backend: {e}")
-
-
+        st.warning(f"JSON parse failed: {e}")
