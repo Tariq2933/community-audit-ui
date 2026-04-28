@@ -67,3 +67,31 @@ with date_col1:
 with date_col2:
     end_date = st.date_input("End Date")
 
+
+# ======================
+# RUN BUTTON
+# ======================
+if st.button("Run Audit"):
+    board_url = PRODUCTS[product][section]
+
+    payload = {
+        "board": board_url,
+        "start_date": str(start_date),
+        "end_date": str(end_date),
+        "filter": filter_type
+    }
+
+    st.info("Sending request to backend…")
+
+    try:
+        response = requests.post(
+            f"{BACKEND_URL}/run",
+            json=payload,
+            timeout=60
+        )
+        st.success("Response received ✅")
+        st.json(response.json())
+
+    except Exception as e:
+        st.error(f"Could not reach backend: {e}")
+
